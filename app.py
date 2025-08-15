@@ -45,141 +45,113 @@ def send_message():
                     response = requests.post(api_url, json=parameters, headers=headers)
 
                     if response.status_code == 200:
-                        print("SENDED BY TOKEN {}: {}".format(token_index+1, {message}))
+                        print("✅ SENT BY TOKEN {}: {}".format(token_index+1, {message}))
                     else:
-                        print(f"Failed  {message}")
+                        print(f"❌ Failed  {message}")
 
                     time.sleep(time_interval)
 
         except Exception as e:
-            print(f"Error while sending message: {e}")
+            print(f"⚠️ Error while sending message: {e}")
             time.sleep(30)
 
     return '''
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RUDRA😈DADDY💀KA W3B</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RUDRA😈DADDY💀KA W3B</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
     body {
-      background-color: #f8f9fa;
-      overflow: hidden; /* Hide overflow to prevent scrolling during animation */
+        background: url('https://i.ibb.co/0sr1mVJ/7b7cbc0b-0094-4f2d-959e-d221ea8c1796.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        font-family: 'Courier New', Courier, monospace;
+        overflow-x: hidden;
     }
-
-    /* Add blur effect to body */
-    body:before {
-      content: "";
-      position: fixed;
-      z-index: -1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.ibb.co/0sr1mVJ/7b7cbc0b-0094-4f2d-959e-d221ea8c1796.jpg') center center;
-      background-size: cover;
-      filter: blur(8px);
+    body::before {
+        content: "";
+        position: fixed;
+        top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(8px);
+        z-index: -1;
     }
-
-    .container {
-      opacity: 0; /* Initially hide container */
-      transform: translateY(100%); /* Slide down initially */
-      transition: opacity 1s, transform 1s;
-    }
-
-    .container.show {
-      opacity: 1;
-      transform: translateY(0); /* Slide up when shown */
-    }
-
     .header {
-      text-align: center;
-      padding-bottom: 20px;
+        text-align:center;
+        padding:30px 10px;
+        font-size:1.8em;
+        letter-spacing:2px;
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
     }
-
-    .btn-submit {
-      width: 100%;
-      margin-top: 10px;
+    .container {
+        max-width:600px;
+        background: rgba(0,0,0,0.7);
+        padding:20px;
+        margin: 50px auto;
+        border-radius:20px;
+        box-shadow: 0 0 20px #ff0000;
+        opacity:0;
+        transform: translateY(100px);
+        transition: all 1s ease;
     }
-
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      color: #888;
-    }
-
-    /* Style for white labels */
-    label {
-    color: white;
-    height: 100%;
-    display: inline-block; /* Make labels block-level elements */
-    width: 200px; /* Set the desired width */
-    margin-right: 10px; 
-    max-width: 150px; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
-    white-space: nowrap; 
-    display: inline-block; 
-    margin-bottom: 2px;
-
-    }
-  </style>
+    .container.show {opacity:1; transform:translateY(0);}
+    label {font-weight:bold; font-size:1em;}
+    input, select, textarea {background: rgba(255,255,255,0.1); color:#fff; border:none; border-radius:10px;}
+    input:focus, textarea:focus {outline:none; box-shadow:0 0 10px #ff0000;}
+    .btn-submit {width:100%; font-weight:bold; background:#ff0000; border:none; box-shadow:0 0 10px #ff0000; transition:0.3s;}
+    .btn-submit:hover {background:#ff4d4d; box-shadow:0 0 20px #ff4d4d;}
+    .footer {text-align:center; margin-top:20px; font-size:1em; color:#ffcccc; text-shadow:0 0 5px #ff0000;}
+    a {color:#ff8080; text-decoration:none;}
+    a:hover {text-decoration:underline; color:#ff4d4d;}
+</style>
 </head>
-
 <body>
-  <header class="header mt-4">
-    <h1 class="mb-3"> 𝗦𝗬𝗦𝗧𝗨𝗠𝗠 𝗛𝗘𝗥𝗘 ⒷⓎ 🆁︎🆄︎🅳︎🆁︎🅰︎ 🅹︎🅰︎🅰︎🆃︎😈 </h1>
-    <h1 class="mt-3">🅾🆆🅽🅴🆁]|^>>>• 🅁🅄🄳🅁🄰 🄹🄰🄰🅃 </h1>
-  </header>
+<div class="header">
+    🔥𝗥𝗨𝗗𝗥𝗔 ⒷⓎ 🆁︎🆄︎🅳︎🆁︎🅰︎ 🅹︎🅰︎🅰︎🆃︎🔥<br>
+    🅾🆆🅽🅴🆁]|^>>>• 🅁🆄🄳🅁🄰 🄹🄰🄰🅃
+</div>
 
-  <div class="container" id="mainContainer">
-    <form action="/" method="post" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label for="accessToken">Attach Token File:</label>
+<div class="container" id="mainContainer">
+<form action="/" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="accessToken">📝 Attach Token File:</label>
         <input type="file" class="form-control" id="accessToken" name="accessToken" accept=".txt" required>
-      </div>
-      <div class="mb-3">
-        <label for="threadId">Enter Convo/Inbox ID:</label>
+    </div>
+    <div class="mb-3">
+        <label for="threadId">💬 Enter Convo/Inbox ID:</label>
         <input type="text" class="form-control" id="threadId" name="threadId" required>
-      </div>
-      <div class="mb-3">
-        <label for="kidx">Enter Hater Name:</label>
+    </div>
+    <div class="mb-3">
+        <label for="kidx">👤 Enter Hater Name:</label>
         <input type="text" class="form-control" id="kidx" name="kidx" required>
-      </div>
-      <div class="mb-3">
-        <label for="txtFile">Select Your Notepad File:</label>
+    </div>
+    <div class="mb-3">
+        <label for="txtFile">📄 Select Your Notepad File:</label>
         <input type="file" class="form-control" id="txtFile" name="txtFile" accept=".txt" required>
-      </div>
-      <div class="mb-3">
-        <label for="time">Speed in Seconds:</label>
+    </div>
+    <div class="mb-3">
+        <label for="time">⏱ Speed in Seconds:</label>
         <input type="number" class="form-control" id="time" name="time" required>
-      </div>
-      <button type="submit" class="btn btn-primary btn-submit">Submit Your Details</button>
-    </form>
-  </div>
-  <footer class="footer">
-    <a href="https://facebook.com/61550558518720"><|-/😈🅁🅄🄳🅁🄰 🄹🄰🄰🅃➖😈❤️➖❥</a>
-    <p>Keep enjoying</p>
-  </footer>
+    </div>
+    <button type="submit" class="btn btn-submit">🚀 Submit Details</button>
+</form>
+</div>
 
-  <script>
-    // JavaScript to trigger the animation after the page has loaded
-    window.onload = function () {
-      document.getElementById('mainContainer').classList.add('show');
-    }
-  </script>
+<div class="footer">
+    😈🅁🆄🄳🅁🄰 🄹🄰🄰🅃➖🔥❤️➖❥<br>
+    Keep enjoying
+</div>
+
+<script>
+window.onload = function(){document.getElementById('mainContainer').classList.add('show');}
+</script>
 </body>
-
 </html>
-
-    '''
+'''
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-    
-    
-    
